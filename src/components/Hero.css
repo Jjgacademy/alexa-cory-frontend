@@ -1,0 +1,55 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 48px;
+}
+
+/* VIDEO */
+.hero-video video {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* TEXTO */
+.hero-content h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+  color: #1D70B8; /* azul confianza */
+}
+
+.hero-content p {
+  font-size: 16px;
+  color: #d1d5db;
+  max-width: 480px;
+}
+
+/* PASOS (IMÁGENES LUEGO) */
+.hero-steps {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.step {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #1D70B8;
+  color: #FFFFFF;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}

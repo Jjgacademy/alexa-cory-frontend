@@ -1,0 +1,52 @@
+/* ===== FOOTER TRIBUTARIO ===== */
+
+.footer {
+  margin-top: 80px;
+  background-color: #1C1C1C; /* oscuro institucional */
+  color: #D1D5DB;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 48px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* INFO */
+.footer-info h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.footer-info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* REDES */
+.footer-social span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #1D70B8;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}

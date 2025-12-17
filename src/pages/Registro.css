@@ -1,0 +1,96 @@
+/* CONTENEDOR */
+.registro {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+/* FORMULARIO */
+.registro-form {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 14px;
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* TITULOS */
+.registro-form h1 {
+  margin-bottom: 6px;
+  color: #0F2A44;
+}
+
+.registro-form p {
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* CAMPOS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.form-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1D70B8;
+}
+
+/* BOTÓN */
+.btn-primary {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* ===== CONTRASEÑA CON OJO ===== */
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff; /* gris serio */
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+}
+
+.toggle-password:hover {
+  color: #1D70B8; /* azul confianza */
+}
+

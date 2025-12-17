@@ -1,0 +1,71 @@
+.cita {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+  background-color: #f2f4f7; /* gris claro institucional */
+}
+
+.cita-card {
+  background: #ffffff;
+  padding: 48px;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.cita-card h1 {
+  color: #0F2A44;
+  margin-bottom: 8px;
+}
+
+.cita-subtitle {
+  color: #6b7280;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+.cita-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #374151;
+}
+
+.info-item a {
+  color: #1D70B8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+/* BOTÓN WHATSAPP */
+.btn-whatsapp {
+  display: inline-block;
+  background-color: #2EB872;
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  background-color: #249a60;
+}
