@@ -34,12 +34,12 @@ export default function Home() {
               <div className="step-icon">📄</div>
               <span>Registra</span>
             </div>
-
+              <br />
             <div className="step-card">
               <div className="step-icon">📊</div>
               <span>Analiza</span>
             </div>
-
+              <br />
             <div className="step-card">
               <div className="step-icon">✔️</div>
               <span>Declara</span>

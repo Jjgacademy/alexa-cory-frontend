@@ -1,6 +1,6 @@
 /* SECCIÓN GENERAL */
 .home-hero {
-  background-color: #f5f3ee; /* color hueso */
+  background-color: #204049; /* color hueso */
   padding: 80px 40px;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@
 
 /* TARJETA CONTENEDORA */
 .home-card {
-  background-color: #ffffff;
+  background-color: #fefefe;
   border-radius: 28px;
   padding: 60px;
   max-width: 1200px;
