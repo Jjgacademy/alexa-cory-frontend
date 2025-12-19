@@ -1,196 +1,80 @@
 import { useState } from "react";
+import { API_URL } from "../config/api";
 import "./Registro.css";
 
 export default function Registro() {
   const [form, setForm] = useState({
-    nombres: "",
-    apellidos: "",
-    correo: "",
+    name: "",
+    email: "",
     password: "",
-    confirmPassword: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !form.nombres ||
-      !form.apellidos ||
-      !form.correo ||
-      !form.password ||
-      !form.confirmPassword
-    ) {
-      alert("Todos los campos son obligatorios");
-      return;
-    }
+    try {
+      const res = await fetch(`${API_URL}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-    if (form.password !== form.confirmPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
+      const data = await res.json();
 
-    alert("Registro válido (pendiente backend)");
+      if (!res.ok) {
+        alert(data.message);
+        return;
+      }
+
+      alert("Registro exitoso, ahora inicia sesión");
+    } catch {
+      alert("Error del servidor");
+    }
   };
 
   return (
-    <main className="registro">
+    <div className="registro">
       <form className="registro-form" onSubmit={handleSubmit}>
         <h1>Registro</h1>
-        <p>Crea tu cuenta para acceder al sistema</p>
+        <p>Crea tu cuenta</p>
 
         <div className="form-group">
-          <label>Nombres</label>
+          <label>Nombre</label>
           <input
-            type="text"
-            name="nombres"
-            value={form.nombres}
+            name="name"
+            placeholder="Nombre"
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="form-group">
-          <label>Apellidos</label>
+          <label>Correo</label>
           <input
-            type="text"
-            name="apellidos"
-            value={form.apellidos}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Correo electrónico</label>
-          <input
+            name="email"
             type="email"
-            name="correo"
-            value={form.correo}
+            placeholder="Correo"
             onChange={handleChange}
             required
           />
         </div>
 
-        {/* CONTRASEÑA */}
         <div className="form-group">
           <label>Contraseña</label>
-          <div className="password-wrapper">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-            <span
-              className="toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-              aria-label="Mostrar u ocultar contraseña"
-            >
-              {showPassword ? (
-                /* OJO CERRADO */
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C7 20 2.73 16.11 1 12" />
-                  <path d="M1 1l22 22" />
-                </svg>
-              ) : (
-                /* OJO ABIERTO */
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              )}
-            </span>
-          </div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        {/* CONFIRMAR CONTRASEÑA */}
-        <div className="form-group">
-          <label>Confirmar contraseña</label>
-          <div className="password-wrapper">
-            <input
-              type={showConfirm ? "text" : "password"}
-              name="confirmPassword"
-              value={form.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-            <span
-              className="toggle-password"
-              onClick={() => setShowConfirm(!showConfirm)}
-              aria-label="Mostrar u ocultar contraseña"
-            >
-              {showConfirm ? (
-                /* OJO CERRADO */
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C7 20 2.73 16.11 1 12" />
-                  <path d="M1 1l22 22" />
-                </svg>
-              ) : (
-                /* OJO ABIERTO */
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              )}
-            </span>
-          </div>
-        </div>
-
-        <button type="submit" className="btn-primary">
-          Registrarse
-        </button>
+        <button className="btn-primary">Registrarse</button>
       </form>
-    </main>
+    </div>
   );
 }

@@ -2,18 +2,21 @@ import "./Home.css";
 
 export default function Home() {
   return (
-    <main className="home">
-      <section className="home-hero">
-        {/* IZQUIERDA: VIDEO */}
+    <section className="home-hero">
+      <div className="home-card">
+
+        {/* VIDEO */}
         <div className="hero-video">
-          <video
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
-            controls
-            muted
-          />
+          <video controls muted>
+            <source
+              src="https://www.youtube.com/watch?v=85qknEZs6oM&list=RD4D3KhGSakIs&index=14"
+              type="video/mp4"
+            />
+            Tu navegador no soporta video.
+          </video>
         </div>
 
-        {/* DERECHA: TEXTO */}
+        {/* TEXTO */}
         <div className="hero-content">
           <h1>
             Controla tus gastos <br />
@@ -25,25 +28,26 @@ export default function Home() {
             de forma clara y segura desde un solo lugar.
           </p>
 
-          <div className="hero-steps">
-  <div className="step-card">
-    <div className="step-icon">📄</div>
-    <span>Registra</span>
-  </div>
+          {/* PASOS */}
+          <div className="steps">
+            <div className="step-card">
+              <div className="step-icon">📄</div>
+              <span>Registra</span>
+            </div>
 
-  <div className="step-card">
-    <div className="step-icon">📊</div>
-    <span>Analiza</span>
-  </div>
+            <div className="step-card">
+              <div className="step-icon">📊</div>
+              <span>Analiza</span>
+            </div>
 
-  <div className="step-card">
-    <div className="step-icon">✔</div>
-    <span>Declara</span>
-  </div>
-</div>
-
+            <div className="step-card">
+              <div className="step-icon">✔️</div>
+              <span>Declara</span>
+            </div>
+          </div>
         </div>
-      </section>
-    </main>
+
+      </div>
+    </section>
   );
 }

@@ -1,71 +1,49 @@
-/* ===== NAVBAR TRIBUTARIO ===== */
-
 .navbar {
-  height: 76px;
-  background-color: #021a3c; /* gris institucional */
+  background-color: #0f2a44;
+  padding: 18px 60px;
+
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
-  padding: 0 56px;
-  border-bottom: 1px solid #d1d5db;
+  align-items: center;
 }
 
-/* LOGO */
 .navbar-logo {
-  font-size: 18px;
+  color: white;
+  font-size: 22px;
   font-weight: 600;
-  color: #ffffff; /* azul oscuro confianza */
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 
-/* CONTENEDOR LINKS */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
 }
 
-/* LINKS NORMALES */
-.nav-link {
-  position: relative;
+.navbar-links a {
+  color: white;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  color: #f7f7f7;
 }
 
-/* SUBRAYADO FINO (CONTROL VISUAL) */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background-color: #ffffff; /* azul medio */
-  transition: width 0.25s ease;
+.navbar-links a:hover {
+  text-decoration: underline;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* LINK ACTIVO */
-.nav-link.active::after {
-  width: 100%;
-}
-
-/* BOTÓN CTA */
-.nav-cta {
-  margin-left: 12px;
-  padding: 10px 22px;
-  border-radius: 8px;
-  background-color: #0f689762;
-  color: #FFFFFF !important;
+/* BOTÓN */
+.btn-cita {
+  background-color: #1d70b8;
+  padding: 10px 18px;
+  border-radius: 10px;
   font-weight: 600;
 }
 
-.nav-cta:hover {
-  background-color: #155a96;
+.btn-cita:hover {
+  background-color: #155a94;
+}
+
+.navbar a {
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
