@@ -1,16 +1,32 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import "./Perfil.css";
 
 export default function Perfil() {
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
+  if (!user) return null;
 
   return (
-    <div>
-      <h2>Perfil</h2>
-      <p><b>Nombre:</b> {user.name}</p>
-      <p><b>Email:</b> {user.email}</p>
+    <section className="perfil-container">
+      <div className="perfil-card">
+        <h2>Mi perfil</h2>
+        <p className="perfil-subtitle">
+          Información registrada en tu cuenta
+        </p>
 
-      <button onClick={logout}>Cerrar sesión</button>
-    </div>
+        <div className="perfil-info">
+          <div>
+            <span>Nombre</span>
+            <p>{user.name}</p>
+          </div>
+
+          <div>
+            <span>Email</span>
+            <p>{user.email}</p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

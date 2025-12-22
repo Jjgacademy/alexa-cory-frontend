@@ -3,8 +3,6 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
-
-  // 🔹 Leemos directamente el token
   const isLogged = !!localStorage.getItem("token");
 
   const cerrarSesion = () => {
@@ -27,17 +25,13 @@ export default function Navbar() {
         )}
 
         {isLogged && (
-          <span
-            onClick={cerrarSesion}
-            style={{ cursor: "pointer" }}
-          >
-            Cerrar sesión
-          </span>
+          <>
+            <Link to="/perfil">Perfil</Link>
+            <Link to="/perfil/editar">Editar perfil</Link>
+            <Link to="/cita">Agendar cita</Link>
+            <span onClick={cerrarSesion}>Cerrar sesión</span>
+          </>
         )}
-
-        <Link to="/cita" className="btn-cita">
-          Agenda una cita
-        </Link>
       </div>
     </nav>
   );

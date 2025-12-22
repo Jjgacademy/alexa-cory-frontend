@@ -8,9 +8,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
+import EditarPerfil from "./pages/EditarPerfil";
 import Cita from "./pages/Cita";
 import InicioSesion from "./pages/InicioSesion";
 
+import PrivateRoute from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthProvider";
 
 export default function App() {
@@ -20,12 +22,47 @@ export default function App() {
         <Navbar />
 
         <Routes>
+          {/* ========= RUTAS PÚBLICAS ========= */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/cita" element={<Cita />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/inicio" element={<InicioSesion />} />
+
+          {/* ========= RUTAS PRIVADAS ========= */}
+          <Route
+            path="/inicio"
+            element={
+              <PrivateRoute>
+                <InicioSesion />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute>
+                <Perfil />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/perfil/editar"
+            element={
+              <PrivateRoute>
+                <EditarPerfil />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/cita"
+            element={
+              <PrivateRoute>
+                <Cita />
+              </PrivateRoute>
+            }
+          />
         </Routes>
 
         {/* CHATBOT EN PAUSA */}
