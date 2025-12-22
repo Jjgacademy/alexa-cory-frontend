@@ -1,11 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { API_URL } from "../config/api";
-import { AuthContext } from "../context/AuthContext";
 import "./Login.css";
 
 export default function Login() {
-  const { login } = useContext(AuthContext);
-
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -20,8 +17,13 @@ export default function Login() {
     try {
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
       });
 
       const data = await res.json();
@@ -31,8 +33,13 @@ export default function Login() {
         return;
       }
 
-      login(data.token);
-    } catch {
+      // ✅ GUARDAMOS TOKEN DIRECTO
+      localStorage.setItem("token", data.token);
+
+      // ✅ REDIRIGIMOS
+      window.location.href = "/inicio";
+    } catch (error) {
+      console.error("ERROR LOGIN:", error);
       alert("Error de conexión");
     }
   };
@@ -41,14 +48,13 @@ export default function Login() {
     <div className="login">
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Iniciar sesión</h1>
-        <p>Accede a tu cuenta</p>
 
         <div className="form-group">
           <label>Correo</label>
           <input
             name="email"
             type="email"
-            placeholder="Correo"
+            value={form.email}
             onChange={handleChange}
             required
           />
@@ -59,13 +65,13 @@ export default function Login() {
           <input
             name="password"
             type="password"
-            placeholder="Contraseña"
+            value={form.password}
             onChange={handleChange}
             required
           />
         </div>
 
-        <button className="btn-primary">Entrar</button>
+        <button type="submit">Entrar</button>
       </form>
     </div>
   );

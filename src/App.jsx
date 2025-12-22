@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
 import Cita from "./pages/Cita";
+import InicioSesion from "./pages/InicioSesion";
+
 
 import { AuthProvider } from "./context/AuthProvider";
 
@@ -23,6 +25,7 @@ export default function App() {
           <Route path="/registro" element={<Registro />} />
           <Route path="/cita" element={<Cita />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/inicio" element={<InicioSesion />} />
         </Routes>
 
         <Footer />
