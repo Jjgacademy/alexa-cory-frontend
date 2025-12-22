@@ -1,33 +1,47 @@
-/* CONTENEDOR */
-.login {
+/* ============================= */
+/* CONTENEDOR REGISTRO */
+/* ============================= */
+.registro {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 80px 20px;
+  align-items: flex-start;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #204049, #102c3a);
 }
 
+/* ============================= */
 /* FORMULARIO */
-.login-form {
+/* ============================= */
+.registro-form {
   width: 100%;
   max-width: 420px;
   background-color: #ffffff;
-  padding: 40px;
-  border-radius: 14px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  padding: 48px 42px;
+  border-radius: 18px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.4s ease;
 }
 
+/* ============================= */
 /* TITULOS */
-.login-form h1 {
-  margin-bottom: 6px;
-  color: #0F2A44;
+/* ============================= */
+.registro-form h1 {
+  margin-bottom: 8px;
+  color: #0f2a44;
+  font-size: 32px;
+  font-weight: 800;
 }
 
-.login-form p {
-  margin-bottom: 24px;
+.registro-form p {
+  margin-bottom: 32px;
   font-size: 14px;
   color: #6b7280;
 }
 
+/* ============================= */
 /* CAMPOS */
+/* ============================= */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -41,25 +55,47 @@
 }
 
 .form-group input {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 10px;
   border: 1px solid #d1d5db;
   font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #1D70B8;
+  border-color: #1d70b8;
+  box-shadow: 0 0 0 3px rgba(29, 112, 184, 0.15);
 }
 
+/* ============================= */
 /* BOTÓN */
+/* ============================= */
 .btn-primary {
   width: 100%;
-  margin-top: 12px;
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #1d70b8;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-/* ===== CONTRASEÑA CON OJO ===== */
+.btn-primary:hover {
+  background-color: #155a96;
+}
 
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ============================= */
+/* CONTRASEÑA CON OJO */
+/* ============================= */
 .password-wrapper {
   position: relative;
   display: flex;
@@ -68,13 +104,39 @@
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px;
+  padding-right: 42px;
 }
 
 .toggle-password {
   position: absolute;
   right: 12px;
   cursor: pointer;
-  font-size: 18px;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+}
+
+.toggle-password:hover {
+  color: #1d70b8;
+}
+
+/* ============================= */
+/* ANIMACIÓN */
+/* ============================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
