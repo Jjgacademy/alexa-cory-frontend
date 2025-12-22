@@ -1,52 +1,91 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ChatBot.css";
-
-const faqs = [
-  {
-    q: "¿Cómo me registro?",
-    a: "Haz clic en 'Registrarte' y completa el formulario con tus datos."
-  },
-  {
-    q: "¿Cómo inicio sesión?",
-    a: "Usa tu correo y contraseña registrados previamente."
-  },
-  {
-    q: "¿Cómo agendo una cita?",
-    a: "Una vez iniciada sesión, haz clic en 'Agenda una cita'."
-  },
-  {
-    q: "¿Es segura mi información?",
-    a: "Sí. Tus datos están protegidos y se usan únicamente para fines tributarios."
-  }
-];
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      content:
+        "Hola 👋 Soy tu asistente tributario. ¿En qué puedo ayudarte hoy?",
+    },
+  ]);
+
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const userInput = input;
+    setMessages((prev) => [...prev, { role: "user", content: userInput }]);
+    setInput("");
+
+    try {
+      const res = await fetch("http://localhost:4000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userInput }),
+      });
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.reply },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "No se pudo procesar tu consulta en este momento. Intenta más tarde.",
+        },
+      ]);
+    }
+  };
 
   return (
     <>
-      {/* BOTÓN FLOTANTE */}
       <button className="chatbot-button" onClick={() => setOpen(!open)}>
         💬
       </button>
 
-      {/* VENTANA */}
       {open && (
-        <div className="chatbot-box">
-          <h4>Preguntas frecuentes</h4>
+        <div className="chatbot-window">
+          <div className="chatbot-header">
+            Asistente Tributario
+            <span onClick={() => setOpen(false)}>✕</span>
+          </div>
 
-          {faqs.map((item, index) => (
-            <div key={index} className="chatbot-item">
-              <button onClick={() => setSelected(index)}>
-                {item.q}
-              </button>
+          <div className="chatbot-body">
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`chatbot-message ${
+                  msg.role === "user" ? "user" : "assistant"
+                }`}
+              >
+                {msg.content}
+              </div>
+            ))}
+            <div ref={bottomRef} />
+          </div>
 
-              {selected === index && (
-                <p className="chatbot-answer">{item.a}</p>
-              )}
-            </div>
-          ))}
+          <div className="chatbot-input">
+            <input
+              placeholder="Escribe tu consulta tributaria..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            />
+            <button onClick={sendMessage}>Enviar</button>
+          </div>
         </div>
       )}
     </>

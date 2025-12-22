@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ChatBot from "./components/ChatBot";
+// import ChatBot from "./components/ChatBot"; // 👈 en pausa
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -28,8 +28,8 @@ export default function App() {
           <Route path="/inicio" element={<InicioSesion />} />
         </Routes>
 
-        {/* BOT DE PREGUNTAS FRECUENTES */}
-        <ChatBot />
+        {/* CHATBOT EN PAUSA */}
+        {/* <ChatBot /> */}
 
         <Footer />
       </BrowserRouter>
