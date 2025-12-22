@@ -7,14 +7,18 @@ export default function Home() {
 
         {/* VIDEO */}
         <div className="hero-video">
-          <video controls muted>
-            <source
-              src="https://www.youtube.com/watch?v=85qknEZs6oM&list=RD4D3KhGSakIs&index=14"
-              type="video/mp4"
-            />
-            Tu navegador no soporta video.
-          </video>
+          <iframe
+  width="100%"
+  height="260"
+  src="https://www.youtube.com/embed/yPzTtKqBTH0"
+  title="Video introductorio"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+  
         </div>
+
 
         {/* TEXTO */}
         <div className="hero-content">

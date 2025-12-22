@@ -1,30 +1,37 @@
-import "./Home.css"; // reutilizamos el MISMO diseño
+import "./Home.css";
 
 export default function InicioSesion() {
   return (
     <section className="home-hero">
       <div className="home-card">
 
+        {/* VIDEO */}
         <div className="hero-video">
-          {/* aquí luego puedes cambiar el video */}
-          <div style={{
-            width: "100%",
-            height: "200px",
-            background: "#111",
-            borderRadius: "16px"
-          }} />
+          <iframe
+  width="100%"
+  height="260"
+  src="https://www.youtube.com/embed/yPzTtKqBTH0"
+  title="Video introductorio"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
         </div>
 
+        {/* TEXTO (MISMO QUE HOME) */}
         <div className="hero-content">
           <h1>
-            Bienvenido a <span>Alexa & Cory</span>
+            Controla tus gastos <br />
+            e impuestos en <span>3 simples pasos</span>
           </h1>
 
           <p>
-            Desde aquí podrás gestionar tu información,
-            revisar tus datos y agendar tus citas de forma segura.
+            Organiza, controla y gestiona tu información tributaria
+            de forma clara y segura desde un solo lugar.
           </p>
 
+          {/* PASOS */}
           <div className="steps">
             <div className="step-card">
               <div className="step-icon">📄</div>
