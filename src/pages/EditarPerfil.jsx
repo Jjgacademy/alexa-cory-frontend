@@ -1,27 +1,24 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { API_URL } from "../config/api";
 import "./EditarPerfil.css";
 
 export default function EditarPerfil() {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [form, setForm] = useState({
-    name: user?.name || "",
+    name: user.name,
     password: "",
     confirmPassword: "",
   });
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔒 Validación básica
     if (form.password && form.password.length < 6) {
       alert("La contraseña debe tener al menos 6 caracteres");
       return;
@@ -32,24 +29,43 @@ export default function EditarPerfil() {
       return;
     }
 
-    // 🔜 Aquí luego conectamos backend
-    console.log("Datos a actualizar:", {
-      name: form.name,
-      password: form.password || "(sin cambio)",
-    });
+    try {
+      const token = localStorage.getItem("token");
 
-    alert("Perfil actualizado correctamente (simulado)");
+      const res = await fetch(`${API_URL}/api/users/profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: form.name,
+          password: form.password || undefined,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!data.ok) {
+        alert(data.message || "Error al actualizar perfil");
+        return;
+      }
+
+      // ✅ ACTUALIZAR CONTEXTO
+      setUser(data.user);
+
+      alert("Perfil actualizado correctamente");
+      setForm({ ...form, password: "", confirmPassword: "" });
+    } catch {
+      alert("Error de conexión");
+    }
   };
-
-  if (!user) return null;
 
   return (
     <section className="editar-perfil">
       <form className="editar-perfil-form" onSubmit={handleSubmit}>
         <h1>Editar perfil</h1>
-        <p>Actualiza tus datos personales</p>
 
-        {/* NOMBRE */}
         <div className="form-group">
           <label>Nombre</label>
           <input
@@ -59,32 +75,26 @@ export default function EditarPerfil() {
           />
         </div>
 
-        {/* EMAIL (SOLO LECTURA) */}
         <div className="form-group">
           <label>Email</label>
-          <input
-            value={user.email}
-            disabled
-          />
+          <input value={user.email} disabled />
         </div>
 
         <hr />
 
         <h3>Cambiar contraseña</h3>
 
-        {/* NUEVA CONTRASEÑA */}
         <div className="form-group">
           <label>Nueva contraseña</label>
           <input
             type="password"
             name="password"
-            placeholder="Dejar vacío para no cambiar"
             value={form.password}
             onChange={handleChange}
+            placeholder="Dejar vacío para no cambiar"
           />
         </div>
 
-        {/* CONFIRMAR CONTRASEÑA */}
         <div className="form-group">
           <label>Confirmar contraseña</label>
           <input
@@ -95,9 +105,7 @@ export default function EditarPerfil() {
           />
         </div>
 
-        <button className="btn-primary">
-          Guardar cambios
-        </button>
+        <button className="btn-primary">Guardar cambios</button>
       </form>
     </section>
   );
