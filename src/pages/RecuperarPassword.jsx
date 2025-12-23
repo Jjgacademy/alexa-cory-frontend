@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import "./RecuperarPassword.css";
 
 export default function RecuperarPassword() {
@@ -41,15 +42,29 @@ export default function RecuperarPassword() {
         return;
       }
 
-      // 🔔 ALERT SIMPLE CON OPCIÓN COPIAR
-      const copiar = window.confirm(
-        `🔐 Código de recuperación:\n\n${data.code}\n\n¿Deseas copiar el código?`
-      );
-
-      if (copiar) {
-        navigator.clipboard.writeText(data.code);
-        alert("✅ Código copiado al portapapeles");
-      }
+      // 🔔 ALERT BONITO CON COPIAR
+      Swal.fire({
+        title: "Código de recuperación",
+        html: `
+          <p>Tu código es:</p>
+          <h2 style="letter-spacing:4px;">${data.code}</h2>
+        `,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonText: "Copiar código",
+        cancelButtonText: "Cerrar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigator.clipboard.writeText(data.code);
+          Swal.fire({
+            icon: "success",
+            title: "Copiado",
+            text: "El código fue copiado al portapapeles",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        }
+      });
 
       setStep(2);
       setSuccess("Código generado correctamente");
@@ -94,7 +109,11 @@ export default function RecuperarPassword() {
         return;
       }
 
-      alert("✅ Contraseña actualizada correctamente");
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: "Contraseña actualizada correctamente",
+      });
 
       setStep(1);
       setUsername("");
