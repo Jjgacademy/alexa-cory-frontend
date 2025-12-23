@@ -53,10 +53,10 @@ export default function Registro() {
         <p>Crea tu cuenta</p>
 
         <div className="form-group">
-          <label>Nombre</label>
+          <label>Nombres y Apellidos</label>
           <input
             name="name"
-            placeholder="Nombre"
+            placeholder="Ingrese sus Nombres y Apellidos"
             onChange={handleChange}
             required
           />
@@ -67,7 +67,7 @@ export default function Registro() {
           <input
             name="email"
             type="email"
-            placeholder="Correo"
+            placeholder="Ingrese su Correo"
             onChange={handleChange}
             required
           />
@@ -78,7 +78,7 @@ export default function Registro() {
           <input
             name="password"
             type="password"
-            placeholder="Contraseña"
+            placeholder="Ingrese su Contraseña"
             onChange={handleChange}
             required
           />
