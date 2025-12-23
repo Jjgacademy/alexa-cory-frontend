@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { API_URL } from "../config/api";
 import "./Login.css";
 
@@ -33,10 +34,10 @@ export default function Login() {
         return;
       }
 
-      // ✅ GUARDAMOS TOKEN DIRECTO
+      // ✅ Guardar token
       localStorage.setItem("token", data.token);
 
-      // ✅ REDIRIGIMOS
+      // ✅ Redirigir
       window.location.href = "/inicio";
     } catch (error) {
       console.error("ERROR LOGIN:", error);
@@ -71,7 +72,15 @@ export default function Login() {
           />
         </div>
 
-        <button type="submit" className="btn-primary">Entrar</button>
+        <button type="submit" className="btn-primary">
+          Entrar
+        </button>
+
+        <p className="forgot-password">
+          <Link to="/recuperar-password">
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </p>
       </form>
     </div>
   );

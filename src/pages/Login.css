@@ -140,3 +140,20 @@
     transform: translateY(0);
   }
 }
+
+.forgot-password {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.forgot-password a {
+  font-size: 14px;
+  color: #1d70b8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+

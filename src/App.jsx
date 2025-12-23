@@ -14,6 +14,8 @@ import InicioSesion from "./pages/InicioSesion";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthProvider";
+import RecuperarPassword from "./pages/RecuperarPassword";
+
 
 export default function App() {
   return (
@@ -26,6 +28,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/recuperar-password" element={<RecuperarPassword />} />
 
           {/* ========= RUTAS PRIVADAS ========= */}
           <Route

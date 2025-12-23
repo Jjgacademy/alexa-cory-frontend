@@ -7,6 +7,7 @@ export default function Registro() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "", // ✅ nuevo campo
   });
 
   const handleChange = (e) =>
@@ -15,11 +16,21 @@ export default function Registro() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ VALIDACIÓN DE CONTRASEÑAS
+    if (form.password !== form.confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
     try {
       const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password, // 👈 solo se envía una contraseña
+        }),
       });
 
       const data = await res.json();
@@ -68,6 +79,18 @@ export default function Registro() {
             name="password"
             type="password"
             placeholder="Contraseña"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* ✅ NUEVO CAMPO */}
+        <div className="form-group">
+          <label>Confirmar contraseña</label>
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirmar contraseña"
             onChange={handleChange}
             required
           />
