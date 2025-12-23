@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { API_URL } from "../config/api";
 import "./RecuperarPassword.css";
 
 export default function RecuperarPassword() {
@@ -11,6 +10,9 @@ export default function RecuperarPassword() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  // =========================
+  // ENVIAR CÓDIGO
+  // =========================
   const enviarCodigo = async () => {
     setError("");
     setSuccess("");
@@ -21,28 +23,44 @@ export default function RecuperarPassword() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/users/recover-by-username`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username }),
-      });
+      const res = await fetch(
+        "http://localhost:4000/api/users/recover-by-username",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username }),
+        }
+      );
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || "Usuario no encontrado");
+        setError(data.message || "Error al generar el código");
         return;
       }
 
+      // 🔔 ALERT SIMPLE CON OPCIÓN COPIAR
+      const copiar = window.confirm(
+        `🔐 Código de recuperación:\n\n${data.code}\n\n¿Deseas copiar el código?`
+      );
+
+      if (copiar) {
+        navigator.clipboard.writeText(data.code);
+        alert("✅ Código copiado al portapapeles");
+      }
+
       setStep(2);
-      setSuccess("Código generado. Revisa la consola del servidor.");
+      setSuccess("Código generado correctamente");
     } catch {
-      setError("Error de conexión");
+      setError("Error de conexión con el servidor");
     }
   };
 
+  // =========================
+  // CAMBIAR CONTRASEÑA
+  // =========================
   const cambiarPassword = async () => {
     setError("");
     setSuccess("");
@@ -58,17 +76,16 @@ export default function RecuperarPassword() {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/users/reset-by-username`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          code,
-          password,
-        }),
-      });
+      const res = await fetch(
+        "http://localhost:4000/api/users/reset-by-username",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, code, password }),
+        }
+      );
 
       const data = await res.json();
 
@@ -77,7 +94,8 @@ export default function RecuperarPassword() {
         return;
       }
 
-      setSuccess("Contraseña actualizada correctamente");
+      alert("✅ Contraseña actualizada correctamente");
+
       setStep(1);
       setUsername("");
       setCode("");
@@ -101,7 +119,6 @@ export default function RecuperarPassword() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Ingrese su usuario"
               />
             </div>
 
@@ -119,7 +136,6 @@ export default function RecuperarPassword() {
                 type="text"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="Código de verificación"
               />
             </div>
 
