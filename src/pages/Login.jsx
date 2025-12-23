@@ -79,9 +79,7 @@ export default function Login() {
         </button>
 
         <p className="forgot-password">
-          <Link to="/recuperar-password">
-            ¿Olvidaste tu contraseña?
-          </Link>
+          <Link to="/recuperar-password">¿Olvidaste tu contraseña?</Link>
         </p>
       </form>
     </div>
