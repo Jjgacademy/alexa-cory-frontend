@@ -1,0 +1,150 @@
+/* ===============================
+   PLANES Y PRECIOS
+================================ */
+
+.planes {
+  padding: 90px 20px;
+  background: #ffffff;
+}
+
+.planes-container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.planes h2 {
+  font-size: 34px;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.planes-subtitle {
+  font-size: 16px;
+  color: #4b5563;
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+/* ===== CARDS ===== */
+
+.planes-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.plan-card {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 35px 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.plan-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.plan-price {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.plan-price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.plan-card li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.plan-card li.disabled {
+  color: #9ca3af;
+}
+
+/* ===== BOTONES ===== */
+
+.btn-plan {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-plan:hover {
+  background: #1e40af;
+}
+
+.btn-plan-outline {
+  background: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-plan-outline:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* ===== DESTACADO ===== */
+
+.featured {
+  background: #ffffff;
+  border: 2px solid #2563eb;
+  transform: scale(1.03);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .planes h2 {
+    font-size: 28px;
+  }
+
+  .plan-price {
+    font-size: 28px;
+  }
+}

@@ -11,11 +11,11 @@ import Perfil from "./pages/Perfil";
 import EditarPerfil from "./pages/EditarPerfil";
 import Cita from "./pages/Cita";
 import InicioSesion from "./pages/InicioSesion";
+import RecuperarPassword from "./pages/RecuperarPassword";
+import PlanesPrecios from "./pages/PlanesPrecios"; // 👈 NUEVO
 
 import PrivateRoute from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthProvider";
-import RecuperarPassword from "./pages/RecuperarPassword";
-
 
 export default function App() {
   return (
@@ -29,6 +29,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/recuperar-password" element={<RecuperarPassword />} />
+          <Route path="/planes" element={<PlanesPrecios />} /> {/* 👈 NUEVA RUTA */}
 
           {/* ========= RUTAS PRIVADAS ========= */}
           <Route

@@ -1,0 +1,82 @@
+/* ===============================
+   SECCIÓN SISTEMA MIXTO
+================================ */
+
+.sistema-mixto {
+  padding: 80px 20px;
+  background: #f9fafb;
+}
+
+.sistema-mixto-container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+/* ===== TÍTULOS ===== */
+
+.sistema-mixto h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.sistema-mixto-subtitle {
+  font-size: 16px;
+  color: #4b5563;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+/* ===== TARJETAS ===== */
+
+.sistema-mixto-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* ===== FOOTER ===== */
+
+.sistema-mixto-footer {
+  margin-top: 40px;
+  font-size: 15px;
+  color: #374151;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .sistema-mixto h2 {
+    font-size: 26px;
+  }
+
+  .sistema-mixto-subtitle {
+    font-size: 15px;
+  }
+}
